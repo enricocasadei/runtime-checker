@@ -9,7 +9,6 @@
     "watch_test": "jest --watch"
   },
   "dependencies": {
-    "class-validator": "^0.13.1",
     "fp-ts": "^2.11.5",
     "io-ts": "^2.2.16",
     "miragejs": "^0.1.41",
@@ -22,7 +21,8 @@
     "runtypes": "^6.5.0",
     "styled-components": "^5.3.0",
     "typescript": "^4.2.4",
-    "uuidv4": "^6.2.12"
+    "uuidv4": "^6.2.12",
+    "zod": "^3.11.6"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
