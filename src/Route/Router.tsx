@@ -1,5 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { ViewRuntypes } from "./ViewRuntypes";
+import { ViewZod } from "./ViewZod";
+import { ViewIots } from "./ViewIots";
 
 export function AppRouter() {
   return (
@@ -20,7 +23,7 @@ export function AppRouter() {
             <Link to="/io-ts">IO-TS</Link>
           </li>
           <li>
-            <Link to="/class-validator">Class Validator</Link>
+            <Link to="/zod">Zod</Link>
           </li>
         </ul>
 
@@ -28,13 +31,13 @@ export function AppRouter() {
 
         <Switch>
           <Route path="/runtypes">
-            <div>runtypes</div>
+            <ViewRuntypes />
           </Route>
           <Route path="/io-ts">
-            <div>io-ts</div>
+            <ViewIots />
           </Route>
-          <Route path="/class-validator">
-            <div>class-validator</div>
+          <Route path="/zod">
+            <ViewZod />
           </Route>
         </Switch>
       </div>
