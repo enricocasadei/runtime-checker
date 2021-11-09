@@ -1,8 +1,9 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ViewRuntypes } from "./ViewRuntypes";
 import { ViewZod } from "./ViewZod";
 import { ViewIots } from "./ViewIots";
+import { ErrorBoundary } from "../Components/ErrorBoundary";
 
 export function AppRouter() {
   return (
@@ -17,38 +18,39 @@ export function AppRouter() {
           }}
         >
           <li>
-            <Link to="/runtypes">runtypes</Link>
+            <a href="/runtypes">runtypes</a>
           </li>
           <li>
-            <Link to="/mock/runtypes">mock runtypes</Link>
+            <a href="/mock/runtypes">mock runtypes</a>
           </li>
           <li>
-            <Link to="/io-ts">IO-TS</Link>
+            <a href="/io-ts">IO-TS</a>
           </li>
           <li>
-            <Link to="/mock/io-ts">mock IO-TS</Link>
+            <a href="/mock/io-ts">mock IO-TS</a>
           </li>
           <li>
-            <Link to="/mock/zod">mock Zod</Link>
+            <a href="/zod">Zod</a>
           </li>
           <li>
-            <Link to="/zod">Zod</Link>
+            <a href="/mock/zod">mock Zod</a>
           </li>
         </ul>
 
         <hr />
-
-        <Switch>
-          <Route path="/:mock?/runtypes">
-            <ViewRuntypes />
-          </Route>
-          <Route path="/:mock?/io-ts">
-            <ViewIots />
-          </Route>
-          <Route path="/:mock?/zod">
-            <ViewZod />
-          </Route>
-        </Switch>
+        <ErrorBoundary>
+          <Switch>
+            <Route path="/:mock?/runtypes">
+              <ViewRuntypes />
+            </Route>
+            <Route path="/:mock?/io-ts">
+              <ViewIots />
+            </Route>
+            <Route path="/:mock?/zod">
+              <ViewZod />
+            </Route>
+          </Switch>
+        </ErrorBoundary>
       </div>
     </Router>
   );

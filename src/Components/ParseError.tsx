@@ -3,21 +3,33 @@ import { GenericError } from "../Domain/errors";
 
 export function ParseError(props: { error: GenericError }) {
   return (
-    <table>
-      <thead>
-        <th>type</th>
-        <th>name</th>
-        <th>message</th>
-        <th>stack</th>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{props.error.type}</td>
-          <td>{props.error.name}</td>
-          <td>{props.error.message}</td>
-          <td>{props.error.stack}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div
+      style={{ display: "flex", flexDirection: "column", gap: 20, width: 600 }}
+    >
+      <div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          <div style={{ textAlign: "left", fontWeight: 600 }}>type</div>
+          <code>{props.error.type}</code>
+        </div>
+      </div>
+      <div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          <div style={{ textAlign: "left", fontWeight: 600 }}>name</div>
+          <code>{props.error.name}</code>
+        </div>
+      </div>
+      <div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          <div style={{ textAlign: "left", fontWeight: 600 }}>message</div>
+          <code>{props.error.message}</code>
+        </div>
+      </div>
+      <div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          <div style={{ textAlign: "left", fontWeight: 600 }}>stack</div>
+          <code>{props.error.stack}</code>
+        </div>
+      </div>
+    </div>
   );
 }

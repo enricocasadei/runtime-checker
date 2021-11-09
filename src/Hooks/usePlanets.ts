@@ -26,18 +26,19 @@ export function usePlanets(decoder: (data: any) => Planet[]) {
   const [loading, setLoading] = useState<boolean>();
   const [planets, setPlanets] = useState<Planet[]>();
   useEffect(() => {
+    const ctrl = controller;
     let server: undefined | { shutdown(): void };
     if (mock === "mock") {
       server = PlanetsServer();
     }
 
     setLoading(true);
-    fetchPlanets<Planet[]>(decoder)(controller.signal)
+    fetchPlanets<Planet[]>()(controller.signal)
       .then(setPlanets)
       .finally(() => {
         setLoading(false);
       });
-    const ctrl = controller;
+
     return () => {
       ctrl.abort();
       if (server) {
@@ -45,6 +46,11 @@ export function usePlanets(decoder: (data: any) => Planet[]) {
       }
     };
   }, [mock]);
+
+  if (planets) {
+    const actualPlanets = decoder(planets);
+    return { planets: actualPlanets };
+  }
 
   return { planets, loading };
 }

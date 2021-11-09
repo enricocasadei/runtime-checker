@@ -11,9 +11,8 @@ export function planetsDecoder(data: Planet[]): Planet[] {
 export function decoder<T>(decoder: t.Decoder<unknown, T>, data: T): T {
   return E.match(
     (errors: t.Errors) => {
-      throw new ParseError(`schema not valid, ${failure(errors).join("\n")}`);
+      throw new ParseError(`schema not valid, ${failure(errors).join(`\n`)}`);
     },
-    // business logic
     (data: T) => data
   )(decoder.decode(data));
 }

@@ -21,6 +21,7 @@ export class ErrorBoundary extends React.Component<{}, ErrorBoundaryState> {
   render(): React.ReactNode {
     const hasError = this.state.hasError;
     const error = this.state.error;
+    console.log(hasError, error);
     if (hasError) {
       if (error?.type === "ParseError") {
         return <ParseError error={error} />;
