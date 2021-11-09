@@ -4,6 +4,7 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 const config = {
   devtool: "inline-source-map",
   devServer: {
+    publicPath: "/",
     contentBase: "../build",
     historyApiFallback: true,
     disableHostCheck: true,
@@ -14,6 +15,7 @@ const config = {
   mode: "development",
   entry: "./src/index.tsx",
   output: {
+    publicPath: "/",
     path: path.join(__dirname, "build"),
   },
   resolve: {

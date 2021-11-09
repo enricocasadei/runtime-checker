@@ -16,11 +16,20 @@ export function AppRouter() {
             gap: "25px",
           }}
         >
-          <li style={{ display: "flex" }}>
+          <li>
             <Link to="/runtypes">runtypes</Link>
           </li>
           <li>
+            <Link to="/mock/runtypes">mock runtypes</Link>
+          </li>
+          <li>
             <Link to="/io-ts">IO-TS</Link>
+          </li>
+          <li>
+            <Link to="/mock/io-ts">mock IO-TS</Link>
+          </li>
+          <li>
+            <Link to="/mock/zod">mock Zod</Link>
           </li>
           <li>
             <Link to="/zod">Zod</Link>
@@ -30,13 +39,13 @@ export function AppRouter() {
         <hr />
 
         <Switch>
-          <Route path="/runtypes">
+          <Route path="/:mock?/runtypes">
             <ViewRuntypes />
           </Route>
-          <Route path="/io-ts">
+          <Route path="/:mock?/io-ts">
             <ViewIots />
           </Route>
-          <Route path="/zod">
+          <Route path="/:mock?/zod">
             <ViewZod />
           </Route>
         </Switch>
