@@ -1,5 +1,5 @@
 import * as RT from "runtypes";
-import { object } from "zod";
+
 import { ParseError } from "../errors";
 import { Planet, PlanetSchema } from "./Planets-runtypes";
 
@@ -14,14 +14,16 @@ export function decoder<T>(schema: RT.Runtype, data: T): T {
     return result.value as T;
   }
 
-  if ("details" in result) {
+  throw new ParseError(`${result.code}: ${result.message.toString()}\n`);
+
+  /* if ("details" in result) {
     throw new ParseError(
       `${result.code}: ${displayErrors(data, result.details)}\n`
     );
   }
-  throw new ParseError(`${result.code}: ${result.message} - "${data}"`);
+  throw new ParseError(`${result.code}: ${result.message} - "${data}"`); */
 }
-
+/* 
 function displayErrors(data: any, details?: RT.Details): string {
   if (!details) return "";
 
@@ -42,4 +44,4 @@ function displayErrors(data: any, details?: RT.Details): string {
       receivedValue ? `\nreceived value: ${receivedValue}\n` : ""
     }`);
   }, "");
-}
+} */
