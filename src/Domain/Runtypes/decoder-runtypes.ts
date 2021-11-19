@@ -1,4 +1,5 @@
 import * as RT from "runtypes";
+import { object } from "zod";
 import { ParseError } from "../errors";
 import { Planet, PlanetSchema } from "./Planets-runtypes";
 
@@ -21,13 +22,16 @@ export function decoder<T>(schema: RT.Runtype, data: T): T {
   throw new ParseError(`${result.code}: ${result.message} - "${data}"`);
 }
 
-// this is type 'any' because the data is failing the tests
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function displayErrors(data: any, details?: RT.Details): string {
   if (!details) return "";
 
   if (Array.isArray(details)) {
-    return details.join(" - ");
+    return details.reduce((acc, obj) => {
+      if (typeof obj === "string") {
+        return (acc += obj);
+      }
+      return (acc += JSON.stringify(obj));
+    }, "") as string;
   }
 
   return Object.entries(details).reduce((acc, [key, value]) => {

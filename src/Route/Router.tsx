@@ -9,6 +9,9 @@ export function AppRouter() {
   return (
     <Router>
       <div style={{ width: "100%" }}>
+        <h1 style={{ marginLeft: 40 }}>List of Planet</h1>
+      </div>
+      <div style={{ width: "100%" }}>
         <ul
           style={{
             display: "flex",

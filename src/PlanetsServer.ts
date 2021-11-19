@@ -8,16 +8,15 @@ export function PlanetsServer(): { shutdown(): void } {
       this.urlPrefix = "https://swapi.dev/";
       this.namespace = "/api/";
 
-      this.get("/planets/", (schema, request) => {
-        console.log("inside the call");
+      this.get("/planets/", () => {
         return {
           count: 60,
           next: "https://swapi.dev/api/planets/?page=2&format=json",
           previous: null,
           results: [
             {
-              //name: "Tatooine",
-              rotation_period: "23",
+              name: "Tatooine",
+              //rotation_period: "23",
               orbital_period: "304",
               diameter: "10465",
               climate: "arid",
