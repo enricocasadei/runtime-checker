@@ -8,7 +8,10 @@ interface ErrorBoundaryState {
   error: GenericError | null;
 }
 
-export class ErrorBoundary extends React.Component<{}, ErrorBoundaryState> {
+export class ErrorBoundary extends React.Component<
+  { children?: React.ReactNode },
+  ErrorBoundaryState
+> {
   constructor(props: {}) {
     super(props);
     this.state = { hasError: false, error: null };
@@ -21,7 +24,7 @@ export class ErrorBoundary extends React.Component<{}, ErrorBoundaryState> {
   render(): React.ReactNode {
     const hasError = this.state.hasError;
     const error = this.state.error;
-    console.log(hasError, error);
+
     if (hasError) {
       if (error?.type === "ParseError") {
         return <ParseError error={error} />;

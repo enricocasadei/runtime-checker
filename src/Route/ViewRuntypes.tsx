@@ -5,6 +5,6 @@ import { usePlanets } from "../Hooks/usePlanets";
 
 export function ViewRuntypes() {
   const state = usePlanets(planetsDecoder);
-
+  console.log({ state });
   return <Planets {...state} />;
 }

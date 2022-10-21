@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ViewRuntypes } from "./ViewRuntypes";
 import { ViewZod } from "./ViewZod";
 import { ViewIots } from "./ViewIots";
@@ -7,7 +7,7 @@ import { ErrorBoundary } from "../Components/ErrorBoundary";
 
 export function AppRouter() {
   return (
-    <Router>
+    <BrowserRouter>
       <div style={{ width: "100%" }}>
         <h1 style={{ marginLeft: 40 }}>List of Planet</h1>
       </div>
@@ -24,37 +24,39 @@ export function AppRouter() {
             <a href="/runtypes">runtypes</a>
           </li>
           <li>
-            <a href="/mock/runtypes">mock runtypes</a>
+            <a href="/runtypes/error">error runtypes</a>
           </li>
           <li>
             <a href="/io-ts">IO-TS</a>
           </li>
           <li>
-            <a href="/mock/io-ts">mock IO-TS</a>
+            <a href="/io-ts/error">error IO-TS</a>
           </li>
           <li>
             <a href="/zod">Zod</a>
           </li>
           <li>
-            <a href="/mock/zod">mock Zod</a>
+            <a href="/zod/error">error Zod</a>
           </li>
         </ul>
 
         <hr />
         <ErrorBoundary>
-          <Switch>
-            <Route path="/:mock?/runtypes">
-              <ViewRuntypes />
+          <Routes>
+            <Route path="/runtypes" element={<ViewRuntypes />}>
+              <Route path=":error" element={<ViewRuntypes />} />
             </Route>
-            <Route path="/:mock?/io-ts">
-              <ViewIots />
+            <Route path="/io-ts" element={<ViewIots />}>
+              <Route path=":error" element={<ViewIots />} />
             </Route>
-            <Route path="/:mock?/zod">
-              <ViewZod />
+            <Route path="/zod" element={<ViewZod />}>
+              <Route path=":error" element={<ViewZod />} />
             </Route>
-          </Switch>
+
+            <Route path="*" element={<div>404 not found</div>} />
+          </Routes>
         </ErrorBoundary>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }

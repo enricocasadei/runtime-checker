@@ -24,12 +24,6 @@ export function ParseError(props: { error: GenericError }) {
           <code>{props.error.message}</code>
         </div>
       </div>
-      <div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-          <div style={{ textAlign: "left", fontWeight: 600 }}>stack</div>
-          <code>{props.error.stack}</code>
-        </div>
-      </div>
     </div>
   );
 }

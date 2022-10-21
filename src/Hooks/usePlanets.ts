@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import { fetchPlanets } from "../Domain/fetchPlanet";
 import { PlanetsServer } from "../PlanetsServer";
 
@@ -21,14 +21,15 @@ type Planet = {
 };
 
 export function usePlanets(decoder: (data: any) => Planet[]) {
-  const { mock } = useParams<{ mock?: string }>();
+  const { error } = useParams<{ error?: string }>();
   const controller = new AbortController();
   const [loading, setLoading] = useState<boolean>();
   const [planets, setPlanets] = useState<Planet[]>();
+
   useEffect(() => {
     const ctrl = controller;
     let server: undefined | { shutdown(): void };
-    if (mock === "mock") {
+    if (error === "error") {
       server = PlanetsServer();
     }
 
@@ -45,7 +46,7 @@ export function usePlanets(decoder: (data: any) => Planet[]) {
         server.shutdown();
       }
     };
-  }, [mock]);
+  }, [error]);
 
   if (planets) {
     const actualPlanets = decoder(planets);

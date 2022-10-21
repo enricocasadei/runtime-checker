@@ -15,6 +15,11 @@ export const PlanetSchema = z.object({
   url: z.string(),
   films: z.array(z.string()),
   residents: z.array(z.string()),
+  property: z
+    .object({
+      property2: z.string(),
+    })
+    .optional(),
 });
 
 export type Planet = z.infer<typeof PlanetSchema>;

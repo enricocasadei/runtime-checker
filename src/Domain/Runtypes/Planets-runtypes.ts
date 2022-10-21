@@ -15,6 +15,9 @@ export const PlanetSchema = RT.Record({
   url: RT.String,
   films: RT.Array(RT.String),
   residents: RT.Array(RT.String),
+  property: RT.Record({
+    property2: RT.String,
+  }).optional(),
 });
 
 export type Planet = RT.Static<typeof PlanetSchema>;

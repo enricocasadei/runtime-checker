@@ -15,8 +15,11 @@ export function PlanetsServer(): { shutdown(): void } {
           previous: null,
           results: [
             {
+              property: {
+                property2: 1,
+              },
               name: "Tatooine",
-              //rotation_period: "23",
+              rotation_period: "23",
               orbital_period: "304",
               diameter: "10465",
               climate: "arid",
@@ -56,7 +59,7 @@ export function PlanetsServer(): { shutdown(): void } {
   });
 }
 
-const planets = [
+export const mockPlanets = [
   {
     name: "Tatooine",
     rotation_period: "23",

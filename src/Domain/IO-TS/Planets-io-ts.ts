@@ -1,6 +1,6 @@
 import * as t from "io-ts";
 
-export const PlanetSchema = t.type({
+export const PlanetSchema = t.partial({
   name: t.string,
   climate: t.string,
   diameter: t.string,
@@ -15,6 +15,7 @@ export const PlanetSchema = t.type({
   url: t.string,
   films: t.array(t.string),
   residents: t.array(t.string),
+  property: t.partial({ property2: t.string }),
 });
 
 export type Planet = t.TypeOf<typeof PlanetSchema>;
